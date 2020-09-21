@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-4.4.1/css/bootstrap.css') }}">
+
+  <title>Sistema de notificaciones</title>
+  <style>
+    body {
+      background-color: #00a8e1;
+    }
+
+    #logo {
+      width: 25px;
+      margin-right: 10px;
+    }
+
+    .modal-backdrop {
+      background: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+	  <h3 class="modal-title"><img id=logo src="{{ url_for('static', filename='logo-faraday.svg') }}">{% block title %}Sistema de alertas{% endblock %}</h3>
+        </div>
+        <div class="modal-body">
+        {% block content %}
+          <div class="alert alert-warning" role="alert">
+            Seleccione el server en donde ocurrio el evento!
+          </div>
+	  <form id="myForm" action="{{ url_for('profile') }}" method="get">
+            <div class="form-group">
+              <label for="nombre">Nombre del servidor</label>
+	      <select class="form-control" name="name">
+                <option>Mordor</option>
+		<option>La comarca</option>
+		<option>Gondor</option>
+		<option>Orcolandia</option>
+		<option>Fontegris</option>
+		<option>Ciril</option>
+              </select>
+            </div>
+          </form>
+        {% endblock %}
+        </div>
+        <div class="modal-footer">
+	  {% block footer %}<button type="button" id="enviar" class="btn btn-outline-primary">Ingresar</button>{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='bootstrap-4.4.1/js/jquery-3.5.1.js') }}"></script>
+  <script src="{{ url_for('static', filename='bootstrap-4.4.1/js/bootstrap.js') }}"></script>
+  <script type="text/javascript">
+    $('#myModal').modal('show');
+    $('#enviar').click(function() {
+	$('#myForm').submit();
+    });
+    
+    $('#enviar2').click(function() {
+      $('#myForm2').submit();
+    });
+    console.log('[*] code available: /dump');
+  </script>
+</body>
+</html>

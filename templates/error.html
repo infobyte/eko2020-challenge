@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="alert alert-danger" role="alert">
+  Complete el formulario correctamente, este error sera reportado a los administradores!
+</div>
+{% endblock %}
+
+{% block footer %}
+  <a class="btn btn-outline-secondary" onClick="window.history.go(-1)">Volver atras</a>
+{% endblock %}
