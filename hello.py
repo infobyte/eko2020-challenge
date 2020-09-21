@@ -16,7 +16,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
-DATABASE = '/home/developer/database.db'
+DATABASE = './database.db'
 
 acc_tmpl = '''
 Se reporto un evento en SERVIDOR:
@@ -44,6 +44,9 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
            db.cursor().executescript(f.read())
         db.commit()
+
+if not os.path.exists(DATABASE):
+    init_db()
 
 def query_db(query, args=(), one=False):
     with app.app_context():
