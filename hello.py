@@ -58,7 +58,7 @@ def query_db(query, args=(), one=False):
 @app.route('/sendMessage', methods=['POST'])
 def sendMessage():
     if request.method == 'POST':
-        msg = Message(request.form['subject'], sender = 'faradaysec@gmail.com', recipients = [request.form['dest']])
+        msg = Message(request.form['subject'], sender = 'faradaysec2@gmail.com', recipients = [request.form['dest']])
         msg.body = render_template_string(acc_tmpl.replace('SERVIDOR', query_db('SELECT nombre FROM usuarios ORDER BY usuario_id DESC', one=True)['nombre']), mensaje=request.form['body'])
         mail.send(msg)
 
