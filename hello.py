@@ -60,9 +60,10 @@ def sendMessage():
     if request.method == 'POST':
         msg = Message(request.form['subject'], sender = 'faradaysec2@gmail.com', recipients = [request.form['dest']])
         msg.body = render_template_string(acc_tmpl.replace('SERVIDOR', query_db('SELECT nombre FROM usuarios ORDER BY usuario_id DESC', one=True)['nombre']), mensaje=request.form['body'])
-        mail.send(msg)
+        # Nos banearon el gmail por la cantidad de mails que enviamos :(
+        # mail.send(msg)
 
-        return render_template('enviado.html', dest=request.form['dest'])
+        return render_template('enviado.html', dest=request.form['dest'], body=msg.body)
 
 @app.route('/profile')
 def profile():

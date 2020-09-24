@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Se ha reportado el incidente a <b>{{ dest }}</b> satisfactoriamente. Gracias por su paciencia
+Se ha reportado el incidente a <b>{{ dest }}</b> satisfactoriamente. Gracias por su paciencia.
+
+<br>
+Mensaje:
+<pre>
+{{body}}
+</pre>
 {% endblock %}
 
 {% block footer %}
